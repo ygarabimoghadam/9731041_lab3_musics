@@ -16,6 +16,7 @@ public class MusicCollection
     //an Arraylist for showing fav musics;
     private ArrayList<String > fave;
 
+
     /**
      * Create a MusicCollection
      */
@@ -23,20 +24,25 @@ public class MusicCollection
     {
         files = new ArrayList<>();
         player = new MusicPlayer();
+        fave = new ArrayList<>();
     }
 
     /**
      * Add a file to the collection.
      * @param filename The file to be added.
      */
-    public void addFile(String filename)
-    {
-        for(String f : files){
-            boolean n = files.contains(filename);
-            if(n)
-                System.out.println("Already added.!");
-            else
-                files.add(filename);
+    public void addFile(String filename) {
+        boolean e = files.isEmpty();
+
+
+        if (e) {files.add(filename);}
+
+         else {
+             if(files.contains(filename))
+                 System.out.println("error");
+             else
+                 files.add(filename);
+
         }
     }
 
@@ -67,9 +73,10 @@ public class MusicCollection
      */
     public void listAllFiles()
     {
-        for(String s : files){
+        int i = 0;
+        for(i=0 ; i<files.size() ; i++){
 
-            System.out.println(s);
+            System.out.println(files.get(i));
         }
     }
 
@@ -79,15 +86,16 @@ public class MusicCollection
      */
     public void removeFile(int index) {
         boolean v = validIndex(index);
-        if (v) {
+
+        if (v ==true) {
             Iterator<String> it = files.iterator();
-            while (it.hasNext()) {
+            int i ;
+            for( i = 0 ;it.hasNext() ; i++) {
                 String s = it.next();
-                int i = files.indexOf(s);
-                if (i == index)
+                System.out.println(i);
+                if (i == index){
                     it.remove();
-                else
-                    break;
+                    }
             }
         }
     }
@@ -128,7 +136,7 @@ public class MusicCollection
     {
         boolean output ;
         int i = 0;
-        while( i<=files.size()){
+        while( i<files.size()){
             i++;
         }
         if(index>i){
